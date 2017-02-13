@@ -1,5 +1,5 @@
 package pivnystvrtok.user;
 
 public enum Role {
-	USER, ADMIN;
+	ADMIN, USER;
 }

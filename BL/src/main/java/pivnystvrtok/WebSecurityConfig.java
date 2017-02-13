@@ -16,7 +16,7 @@ import pivnystvrtok.user.Role;
 
 @Configuration
 @EnableWebSecurity
-//@EnableGlobalMethodSecurity(prePostEnabled = true)
+@EnableGlobalMethodSecurity(prePostEnabled = true)
 @Order(SecurityProperties.ACCESS_OVERRIDE_ORDER)
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     
@@ -28,7 +28,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         http
             .authorizeRequests()
                 .antMatchers("/").permitAll()
-//                .antMatchers("/admin").hasRole(Role.ADMIN.toString())
+                .antMatchers("/admin").hasAuthority(Role.ADMIN.toString())
                 .anyRequest().authenticated()
                 .and()
             .formLogin()

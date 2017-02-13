@@ -3,22 +3,18 @@ package pivnystvrtok.user;
 import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.NotEmpty;
-import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.index.Indexed;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-import pivnystvrtok.action.Update;
+import pivnystvrtok.common.BaseEntity;
 
 
-public class User {
-
-    @Id
-    @JsonProperty
-    @NotEmpty(groups={Update.class})
-    private Long id;
+public class User extends BaseEntity{
 
     @JsonProperty
     @NotEmpty
+    @Indexed(unique=true) //TODO doesn't work???
     private String username;
 
     @JsonProperty
@@ -28,14 +24,6 @@ public class User {
     @JsonProperty
     @NotNull(message="the role is mandatory")
     private Role role;
-
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
-	}
 
 	public String getUsername() {
 		return username;

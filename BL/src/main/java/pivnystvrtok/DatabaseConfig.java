@@ -7,10 +7,12 @@ import org.springframework.data.mongodb.repository.config.EnableMongoRepositorie
 import com.mongodb.Mongo;
 import com.mongodb.MongoClient;
 
+import pivnystvrtok.pivnystvrtok.PivnyStvrtokRepository;
+import pivnystvrtok.restaurant.RestaurantRepository;
 import pivnystvrtok.user.UserRepository;
 
 @Configuration
-@EnableMongoRepositories(basePackageClasses=UserRepository.class)
+@EnableMongoRepositories(basePackageClasses={UserRepository.class,RestaurantRepository.class,PivnyStvrtokRepository.class})
 public class DatabaseConfig extends AbstractMongoConfiguration{
 
 	@Override
