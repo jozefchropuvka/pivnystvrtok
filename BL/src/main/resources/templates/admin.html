@@ -1,31 +1,15 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:th="http://www.thymeleaf.org"
-	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<html>
 <head>
 <title>Administracia</title>
 </head>
 <body>
-	<h1>Vytvorit uzivatela</h1>
-	<form th:action="@{/user}" method="post">
-		<div>
-			<label> Uzivatelske meno: <input type="text" name="username" />
-			</label>
-		</div>
-		<div>
-			<label> Heslo: <input type="password" name="password" />
-			</label>
-		</div>
-		<div>
-			<label> Rola: <select > <!--th:field="*{role}"  -->
-					<option th:each="r : ${T(pivnystvrtok.user.Role).values()}"
-						th:value="${r}" th:text="${r}"></option>
-			</select>
-			</label>
-		</div>
-		<div>
-			<input type="submit" value="Vytvorit" />
-		</div>
-	</form>
+	<h2>Vyhladat uzivatela</h2>
+	<!-- forma na vyhladanie uzivatela -->
+	<h2>Vytvorit uzivatela</h2>
+	<!-- forma na vytvorenie uzivatela -->
+	<h2>Upravit uzivatela</h2>
+	<!-- forma na upravenie uzivatela -->
+	
 </body>
 </html>

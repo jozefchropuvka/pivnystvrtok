@@ -4,12 +4,12 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 
-@Controller
+@RestController
 @RequestMapping("/user")
 public class UserController {
 	
@@ -18,10 +18,9 @@ public class UserController {
 	
 	@PreAuthorize("hasAuthority('ADMIN')")
 	@PostMapping
-	@ResponseBody	
-	public String create(@Valid User user){
-		userService.create(user);
-		return "user?created";
+	@ResponseBody
+	public User create(@Valid User user){		
+		return userService.create(user);
 	}
-	
+		
 }

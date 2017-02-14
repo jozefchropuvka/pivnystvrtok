@@ -7,7 +7,6 @@ import org.springframework.data.mongodb.repository.config.EnableMongoRepositorie
 import pivnystvrtok.user.UserRepository;
 
 @SpringBootApplication
-@EnableMongoRepositories(basePackageClasses=UserRepository.class)
 public class PivnyStvrtokApplication {
 
 	public static void main(String[] args) {
