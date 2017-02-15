@@ -4,7 +4,6 @@ import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/map';
 
-import { LoginForm } from '../login-form';
 import { UserCurrent } from '../user-current';
 
 @Injectable()
@@ -12,16 +11,27 @@ export class LoginService {
 
   constructor(private http: Http) { }
 
-  login(loginForm: LoginForm): Observable<UserCurrent> {
-    const headers = new Headers({ 'Content-Type': 'application/json' });
+  login(event, username, password) {
+    const headers = new Headers({ 'Content-Type': 'application/x-www-form-urlencoded' });
     const options = new RequestOptions({ headers: headers });
-    return this.http.post('/login', { loginForm }, options)
-      .map(this.extractData)
-      .catch(this.handleError);
+    const body = `username=${username}&password=${password}`;
+    event.preventDefault();
+    console.log(body);
+    this.http.post('http://localhost:8080/svc/login', body, options)
+      .subscribe(
+        response => {
+          localStorage.setItem('id_token', response.json().id_token);
+         /** this.router.navigate(['home']);*/
+        },
+        error => {
+          alert(error.text());
+          console.log(error.text());
+        }
+      );
   }
 
   private handleError(error: any): Promise<any> {
-    console.error('An error occurred', error); // for demo purposes only
+    console.error('An error occurred', error);
     return Promise.reject(error.message || error);
   }
 

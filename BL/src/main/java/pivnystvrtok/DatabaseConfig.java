@@ -13,7 +13,7 @@ import pivnystvrtok.user.UserRepository;
 
 @Configuration
 @EnableMongoRepositories(basePackageClasses={UserRepository.class,RestaurantRepository.class,PivnyStvrtokRepository.class})
-public class DatabaseConfig extends AbstractMongoConfiguration{
+public class DatabaseConfig extends AbstractMongoConfiguration {
 
 	@Override
 	protected String getDatabaseName() {

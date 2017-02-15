@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import {LoginService} from './login.service';
-import {LoginForm} from '../login-form';
 
 @Component({
   selector: 'app-login',
@@ -10,14 +9,10 @@ import {LoginForm} from '../login-form';
 })
 export class LoginComponent {
 
-   public loginForm = new LoginForm('', '');
-   public errorMsg = '';
-
   constructor(private loginService: LoginService) { }
 
-  login() {
-        if (!this.loginService.login(this.loginForm)) {
-            this.errorMsg = 'Failed to login';
-        }
-    }
+   login(event, username, password) {
+    this.loginService.login(event, username, password);
+  }
 }
+

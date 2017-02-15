@@ -5,6 +5,7 @@ import javax.validation.constraints.NotNull;
 import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.data.mongodb.core.index.Indexed;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import pivnystvrtok.common.BaseEntity;
@@ -17,7 +18,7 @@ public class User extends BaseEntity{
     @Indexed(unique=true) //TODO doesn't work???
     private String username;
 
-    @JsonProperty
+    @JsonIgnore
     @NotEmpty
     private String password; //hashed
 
