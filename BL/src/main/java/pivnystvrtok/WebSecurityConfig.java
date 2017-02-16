@@ -1,6 +1,7 @@
 package pivnystvrtok;
 
 import java.io.IOException;
+import java.util.Arrays;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -8,6 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.security.SecurityProperties;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.annotation.Order;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -27,6 +29,9 @@ import org.springframework.security.web.savedrequest.RequestCache;
 import org.springframework.security.web.savedrequest.SavedRequest;
 import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
+import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.cors.CorsConfigurationSource;
+import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
 @Configuration
 @EnableWebSecurity
@@ -39,24 +44,16 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Autowired
 	private RestAuthenticationEntryPoint restAuthenticationEntryPoint;
-	
+
 	@Autowired
-    private MySavedRequestAwareAuthenticationSuccessHandler
-      authenticationSuccessHandler;
+	private MySavedRequestAwareAuthenticationSuccessHandler authenticationSuccessHandler;
 
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
-		http
-        .csrf().disable()
-        .exceptionHandling()
-        .authenticationEntryPoint(restAuthenticationEntryPoint)
-        .and().authorizeRequests().anyRequest().fullyAuthenticated().and()
-        .formLogin()
-        .loginPage("/svc/login").permitAll()
-        .successHandler(authenticationSuccessHandler)
-        .failureHandler(new SimpleUrlAuthenticationFailureHandler())
-        .and()
-        .logout().permitAll();
+		http.cors().and().csrf().disable().exceptionHandling().authenticationEntryPoint(restAuthenticationEntryPoint).and()
+				.authorizeRequests().anyRequest().fullyAuthenticated().and().formLogin()
+				.loginPage("/svc/login").permitAll().successHandler(authenticationSuccessHandler)
+				.failureHandler(new SimpleUrlAuthenticationFailureHandler()).and().logout().permitAll();
 	}
 
 	@Override
@@ -64,6 +61,18 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		auth.userDetailsService(userDetailsService).passwordEncoder(new BCryptPasswordEncoder());
 	}
 	
+	@Bean
+	CorsConfigurationSource corsConfigurationSource() {
+		CorsConfiguration configuration = new CorsConfiguration();
+		configuration.setAllowedOrigins(Arrays.asList("http://localhost:4200"));
+		configuration.setAllowedMethods(Arrays.asList("GET","POST", "HEAD", "OPTIONS", "PUT"));
+		configuration.setAllowCredentials(true);
+		configuration.setAllowedHeaders(Arrays.asList("*"));
+		UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+		source.registerCorsConfiguration("/**", configuration);
+		return source;
+	}
+
 }
 
 @Component
@@ -76,6 +85,7 @@ class RestAuthenticationEntryPoint implements AuthenticationEntryPoint {
 		response.sendError(HttpServletResponse.SC_UNAUTHORIZED, "Unauthorized");
 	}
 }
+
 @Component
 class MySavedRequestAwareAuthenticationSuccessHandler extends SimpleUrlAuthenticationSuccessHandler {
 

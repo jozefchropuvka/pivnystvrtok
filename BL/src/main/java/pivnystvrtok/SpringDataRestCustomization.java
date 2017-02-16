@@ -7,14 +7,12 @@ import org.springframework.stereotype.Component;
 @Component
 public class SpringDataRestCustomization extends RepositoryRestConfigurerAdapter{
 	
-	@Override
+	  @Override
 	  public void configureRepositoryRestConfiguration(RepositoryRestConfiguration config) {
-
-		config.getCorsRegistry().addMapping("/svc/**")
+		config.getCorsRegistry().addMapping("/**")
 	      .allowedOrigins("http://localhost:4200")
 	      .allowedMethods("*")
 	      .allowedHeaders("*")
-	      .exposedHeaders("header1", "header2")
-	      .allowCredentials(false).maxAge(3600);
+	      .allowCredentials(true);
 	  }
 }

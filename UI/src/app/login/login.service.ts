@@ -12,7 +12,7 @@ export class LoginService {
   constructor(private http: Http) { }
 
   login(event, username, password) {
-    const headers = new Headers({ 'Content-Type': 'application/x-www-form-urlencoded' });
+    const headers = new Headers({ 'Content-Type': 'application/x-www-form-urlencoded'});
     const options = new RequestOptions({ headers: headers });
     const body = `username=${username}&password=${password}`;
     event.preventDefault();
@@ -20,11 +20,11 @@ export class LoginService {
     this.http.post('http://localhost:8080/svc/login', body, options)
       .subscribe(
         response => {
-          localStorage.setItem('id_token', response.json().id_token);
+          console.log(response);
+ //         localStorage.setItem('id_token', response.json().id_token); TODO set JSESSIONID
          /** this.router.navigate(['home']);*/
         },
         error => {
-          alert(error.text());
           console.log(error.text());
         }
       );
