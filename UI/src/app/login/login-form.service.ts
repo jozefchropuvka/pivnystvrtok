@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Headers, Http, RequestOptions, Response } from '@angular/http';
+import { Router } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/map';
@@ -7,9 +8,9 @@ import 'rxjs/add/operator/map';
 import { UserCurrent } from '../user-current';
 
 @Injectable()
-export class LoginService {
+export class LoginFormService {
 
-  constructor(private http: Http) { }
+  constructor(private http: Http, private router: Router) { }
 
   login(event, username, password) {
     const headers = new Headers({ 'Content-Type': 'application/x-www-form-urlencoded'});
@@ -22,7 +23,7 @@ export class LoginService {
         response => {
           console.log(response);
  //         localStorage.setItem('id_token', response.json().id_token); TODO set JSESSIONID
-         /** this.router.navigate(['home']);*/
+        this.router.navigate(['main']);
         },
         error => {
           console.log(error.text());

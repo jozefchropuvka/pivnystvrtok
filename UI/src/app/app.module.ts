@@ -4,26 +4,34 @@ import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { AlertModule } from 'ng2-bootstrap';
 import { RouterModule } from '@angular/router';
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 import { AppComponent } from './app.component';
-import { LoginComponent } from './login/login.component';
-import { LoginService } from './login/login.service';
+import { LoginFormComponent } from './login/login-form.component';
+import { LoginFormService } from './login/login-form.service';
 
 import { AppRoutingModule } from './app-routing.module';
+import { UserComponent } from './user/user.component';
+import { LoginButtonComponent } from './login/login-button.component';
+import { MainComponent } from './main/main.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    LoginComponent
+    LoginFormComponent,
+    UserComponent,
+    LoginButtonComponent,
+    MainComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpModule,
     AlertModule.forRoot(),
-    AppRoutingModule
+    AppRoutingModule,
+    FlexLayoutModule.forRoot()
   ],
-  providers: [LoginService],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

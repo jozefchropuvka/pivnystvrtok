@@ -1,6 +1,8 @@
-<h1>
+<div class="container" fxLayout="column" >
+<h1 fxLayoutAlign="center" class="text-primary">
   {{title}}
-  
 </h1>
-<a routerLink="/login">Prihlásiť sa</a>
+<h3 fxLayoutAlign="center">{{date}}</h3>
+<h3 fxLayoutAlign="center">{{restaurant}}</h3>
 <router-outlet></router-outlet>
+</div>
