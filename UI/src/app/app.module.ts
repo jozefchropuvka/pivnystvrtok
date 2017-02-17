@@ -29,7 +29,7 @@ import { MainComponent } from './main/main.component';
     HttpModule,
     AlertModule.forRoot(),
     AppRoutingModule,
-    FlexLayoutModule.forRoot()
+    FlexLayoutModule
   ],
   providers: [],
   bootstrap: [AppComponent]

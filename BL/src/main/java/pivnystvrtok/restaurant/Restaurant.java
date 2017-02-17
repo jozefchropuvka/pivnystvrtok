@@ -1,10 +1,7 @@
 package pivnystvrtok.restaurant;
 
-import java.util.List;
-
 import javax.validation.constraints.NotNull;
 
-import org.bson.types.ObjectId;
 import org.hibernate.validator.constraints.NotEmpty;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -21,9 +18,6 @@ public class Restaurant extends BaseEntity{
 	 	@NotNull
 	 	private Address address;
 
-	 	@JsonProperty
-	 	private List<ObjectId> events; //TODO save past pivnestvrtky
-	 	
 
 		public String getName() {
 			return name;
