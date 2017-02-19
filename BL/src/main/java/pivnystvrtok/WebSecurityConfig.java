@@ -51,7 +51,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		http.cors().and().csrf().disable().exceptionHandling().authenticationEntryPoint(restAuthenticationEntryPoint).and()
-				.authorizeRequests().anyRequest().fullyAuthenticated().and().formLogin()
+				.authorizeRequests().antMatchers("/svc/pivnyStvrtok/simple").permitAll().anyRequest().fullyAuthenticated().and().formLogin()
 				.loginPage("/svc/login").permitAll().successHandler(authenticationSuccessHandler)
 				.failureHandler(new SimpleUrlAuthenticationFailureHandler()).and().logout().permitAll();
 	}

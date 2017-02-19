@@ -2,25 +2,33 @@ package pivnystvrtok.pivnystvrtok;
 
 import java.util.List;
 
-import org.bson.types.ObjectId;
+import javax.validation.constraints.NotNull;
+
 import org.joda.time.DateTime;
+import org.springframework.data.mongodb.core.mapping.DBRef;
+import org.springframework.data.repository.NoRepositoryBean;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-import pivnystvrtok.common.BaseEntity;
+import pivnystvrtok.common.BaseDocument;
+import pivnystvrtok.restaurant.Restaurant;
 
-public class PivnyStvrtok extends BaseEntity{
+public class PivnyStvrtok extends BaseDocument{
 	
-	@JsonProperty
+	@JsonProperty///TODO validation - has to be thursday
+	@NotNull
 	private DateTime date;
 	
 	@JsonProperty
-	private ObjectId restaurant;
+	@DBRef
+	@NotNull
+	private Restaurant restaurant;
 	
 	@JsonProperty
 	private List<Vote> votes;
 	
 	@JsonProperty
+	@NotNull
 	private State state;
 	
 	@JsonProperty
@@ -34,11 +42,11 @@ public class PivnyStvrtok extends BaseEntity{
 		this.date = date;
 	}
 
-	public ObjectId getRestaurant() {
+	public Restaurant getRestaurant() {
 		return restaurant;
 	}
 
-	public void setRestaurant(ObjectId restaurant) {
+	public void setRestaurant(Restaurant restaurant) {
 		this.restaurant = restaurant;
 	}
 

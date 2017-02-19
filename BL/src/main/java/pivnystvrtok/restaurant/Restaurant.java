@@ -6,9 +6,9 @@ import org.hibernate.validator.constraints.NotEmpty;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-import pivnystvrtok.common.BaseEntity;
+import pivnystvrtok.common.BaseDocument;
 
-public class Restaurant extends BaseEntity{
+public class Restaurant extends BaseDocument{
 	 	
 	 	@JsonProperty
 	 	@NotEmpty

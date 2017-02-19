@@ -8,10 +8,10 @@ import org.springframework.data.mongodb.core.index.Indexed;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-import pivnystvrtok.common.BaseEntity;
+import pivnystvrtok.common.BaseDocument;
 
 
-public class User extends BaseEntity{
+public class User extends BaseDocument{
 
     @JsonProperty
     @NotEmpty

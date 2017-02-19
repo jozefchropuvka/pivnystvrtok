@@ -8,7 +8,6 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 
 import { AppComponent } from './app.component';
 import { LoginFormComponent } from './login/login-form.component';
-import { LoginFormService } from './login/login-form.service';
 
 import { AppRoutingModule } from './app-routing.module';
 import { UserComponent } from './user/user.component';

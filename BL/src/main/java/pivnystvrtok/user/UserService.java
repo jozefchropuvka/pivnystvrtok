@@ -11,6 +11,8 @@ public interface UserService {
 
     Collection<User> getAllUsers();
 
-    User create(User form);
+	User create(UserPayload user);
+	
+	User create(User form);
 
 }

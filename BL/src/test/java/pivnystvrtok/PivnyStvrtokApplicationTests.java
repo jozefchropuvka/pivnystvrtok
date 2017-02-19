@@ -3,6 +3,9 @@ package pivnystvrtok;
 import java.math.BigDecimal;
 import java.util.Arrays;
 
+import javax.validation.Valid;
+
+import org.bson.types.ObjectId;
 import org.joda.time.DateTime;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -14,6 +17,7 @@ import org.springframework.util.Assert;
 import pivnystvrtok.pivnystvrtok.PivnyStvrtok;
 import pivnystvrtok.pivnystvrtok.PivnyStvrtokRepository;
 import pivnystvrtok.pivnystvrtok.Post;
+import pivnystvrtok.pivnystvrtok.State;
 import pivnystvrtok.pivnystvrtok.Vote;
 import pivnystvrtok.restaurant.Address;
 import pivnystvrtok.restaurant.Restaurant;
@@ -46,9 +50,9 @@ public class PivnyStvrtokApplicationTests {
 	@Test
 	public void createUser() {
 		User user = new User();
-		user.setPassword("testPass");
-		user.setUsername("testAdmin");
-		user.setRole(Role.ADMIN);
+		user.setPassword("testUser");
+		user.setUsername("testUser");
+		user.setRole(Role.USER);
 		Assert.notNull(userService.create(user));
 	}
 	
@@ -58,14 +62,16 @@ public class PivnyStvrtokApplicationTests {
 		PivnyStvrtok ps = new PivnyStvrtok();
 		Post post = new Post();
 		post.setEntry("DFLSDFDSLFSDLFJ a lksjfala sjflaskjdfA <fldkj aldfkj dslfjsdlf jsdlvfj asfljasdas dfas dfas fas dfas df");
-		post.setUser(currentUserService.getCurrentUser().getId());
+		post.setUser(currentUserService.getUser());
 		Vote vote = new Vote();
 		vote.setDate(new DateTime());
-		vote.setRestaurant(restaurantRepository.findByName("Zámocký pivovar").getId());
-		vote.setUser(currentUserService.getCurrentUser().getId());
+		vote.setRestaurant(restaurantRepository.findByName("Zámocký pivovar"));
+		vote.setUser(currentUserService.getUser());
 		ps.setDate(new DateTime());
 		ps.setPosts(Arrays.asList(post,post,post));
 		ps.setVotes(Arrays.asList(vote,vote,vote));
+		ps.setRestaurant(restaurantRepository.findByName("Zámocký pivovar"));
+		ps.setState(State.FINISHED);
 		psRepository.save(ps);
 	}
 	

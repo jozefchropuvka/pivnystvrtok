@@ -11,14 +11,15 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class UserController {
 	
-	/*@Autowired
+	@Autowired
 	UserServiceImpl userService;
 	
 	@PreAuthorize("hasAuthority('ADMIN')")
-	@PostMapping
+	@PostMapping(value="/svc/user")
 	@ResponseBody
-	public User create(@Valid User user){		
+	public User create(@Valid UserPayload user){		
 		return userService.create(user);
-	}*/
-		
+	}
+
+	
 }

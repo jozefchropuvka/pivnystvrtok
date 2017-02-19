@@ -2,34 +2,32 @@ package pivnystvrtok.pivnystvrtok;
 
 import org.bson.types.ObjectId;
 import org.joda.time.DateTime;
-import org.springframework.data.annotation.Id;
 import org.springframework.data.annotation.LastModifiedDate;
+import org.springframework.data.mongodb.core.mapping.DBRef;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+
+import pivnystvrtok.user.User;
 
 
 public class Post {
 	
-	@Id
 	@JsonProperty
-	private String id;
+	private ObjectId id;
 	
 	@JsonProperty
 	private String entry;
 	
 	@JsonProperty
-	private ObjectId user;
+	@DBRef
+	private User user;
 	
 	@JsonProperty
 	@LastModifiedDate
 	private DateTime date;
 
-	public String getId() {
+	public ObjectId getId() {
 		return id;
-	}
-
-	public void setId(String id) {
-		this.id = id;
 	}
 
 	public String getEntry() {
@@ -40,11 +38,11 @@ public class Post {
 		this.entry = entry;
 	}
 
-	public ObjectId getUser() {
+	public User getUser() {
 		return user;
 	}
 
-	public void setUser(ObjectId user) {
+	public void setUser(User user) {
 		this.user = user;
 	}
 

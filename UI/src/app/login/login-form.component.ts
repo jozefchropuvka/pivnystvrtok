@@ -1,18 +1,17 @@
 import { Component } from '@angular/core';
-import {LoginFormService} from './login-form.service';
+import { HttpHelper } from '../helpers/http-helper';
 
 @Component({
   selector: 'app-login-form',
   templateUrl: './login-form.component.html',
   styleUrls: ['./login-form.component.css'],
-  providers: [LoginFormService],
+  providers: [HttpHelper]
 })
 export class LoginFormComponent {
 
-  constructor(private loginFormService: LoginFormService) { }
-
+  constructor(private http: HttpHelper) { }
    login(event, username, password) {
-    this.loginFormService.login(event, username, password);
+    this.http.login(event, username, password);
   }
 }
 
