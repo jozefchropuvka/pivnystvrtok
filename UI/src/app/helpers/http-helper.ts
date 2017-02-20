@@ -8,10 +8,11 @@ import 'rxjs/add/operator/map';
 
 @Injectable()
 export class HttpHelper {
-  public base = 'http://localhost:8080/svc';
+  public base = 'http://localhost:8080';
   public loginUrl = this.base + '/login';
   public logoutUrl = this.base + '/logout';
   public psSimpleUrl = this.base + '/pivnyStvrtok/simple';
+  public currentUser = this.base + '/user/current';
 
   constructor(private http: Http, private router: Router) {}
 
@@ -31,7 +32,6 @@ export class HttpHelper {
       .subscribe(
         response => {
           console.log(response);
- //         localStorage.setItem('id_token', response.json().id_token); TODO set JSESSIONID
         this.router.navigate(['main']);
         },
         error => {
@@ -48,9 +48,15 @@ export class HttpHelper {
       this.router.navigate(['']);
       },
       error => {
-        console.log(error.text());
+        console.log('Error: ' + error);
       }
     );
+  }
+  
+  public getCurrentUsername(): Observable<any> {
+    return this.http.get(this.currentUser)
+      .map(this.extractData)
+      .catch(this.handleError);
   }
   private extractData(res: Response) {
     return res.json() || {};

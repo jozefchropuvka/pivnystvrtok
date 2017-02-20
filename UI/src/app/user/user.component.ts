@@ -8,17 +8,19 @@ import { HttpHelper } from '../helpers/http-helper';
   providers: [ HttpHelper ]
 })
 export class UserComponent implements OnInit {
-  
-  constructor(private http: HttpHelper) { }
   username;
   
   
-  
+  constructor(private http: HttpHelper) { }
   ngOnInit() {
-    
+    this.http.getCurrentUsername().subscribe(
+      res => { 
+        this.username = res  || {};     
+      }
+    );
   }
   
   logout() {
-  
+    this.http.logout();
   }
 }

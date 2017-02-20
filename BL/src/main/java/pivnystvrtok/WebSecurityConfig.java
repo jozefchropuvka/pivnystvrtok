@@ -24,6 +24,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.AuthenticationEntryPoint;
 import org.springframework.security.web.authentication.SimpleUrlAuthenticationFailureHandler;
 import org.springframework.security.web.authentication.SimpleUrlAuthenticationSuccessHandler;
+import org.springframework.security.web.authentication.logout.HttpStatusReturningLogoutSuccessHandler;
 import org.springframework.security.web.savedrequest.HttpSessionRequestCache;
 import org.springframework.security.web.savedrequest.RequestCache;
 import org.springframework.security.web.savedrequest.SavedRequest;
@@ -51,9 +52,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		http.cors().and().csrf().disable().exceptionHandling().authenticationEntryPoint(restAuthenticationEntryPoint).and()
-				.authorizeRequests().antMatchers("/svc/pivnyStvrtok/simple").permitAll().anyRequest().fullyAuthenticated().and().formLogin()
-				.loginPage("/svc/login").permitAll().successHandler(authenticationSuccessHandler)
-				.failureHandler(new SimpleUrlAuthenticationFailureHandler()).and().logout().permitAll();
+				.authorizeRequests().antMatchers("/pivnyStvrtok/simple").permitAll().anyRequest().fullyAuthenticated().and().formLogin()
+				.permitAll().successHandler(authenticationSuccessHandler)
+				.failureHandler(new SimpleUrlAuthenticationFailureHandler()).and().logout().logoutSuccessHandler(new HttpStatusReturningLogoutSuccessHandler()).permitAll();
 	}
 
 	@Override

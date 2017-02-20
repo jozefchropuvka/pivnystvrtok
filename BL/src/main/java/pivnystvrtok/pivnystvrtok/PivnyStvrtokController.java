@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping(value={"/svc/pivnyStvrtok"})
+@RequestMapping(value={"/pivnyStvrtok"})
 @ResponseBody
 public class PivnyStvrtokController {
 	

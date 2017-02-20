@@ -71,7 +71,7 @@ public class PivnyStvrtokApplicationTests {
 		ps.setPosts(Arrays.asList(post,post,post));
 		ps.setVotes(Arrays.asList(vote,vote,vote));
 		ps.setRestaurant(restaurantRepository.findByName("Zámocký pivovar"));
-		ps.setState(State.FINISHED);
+		ps.setState(State.VOTED);
 		psRepository.save(ps);
 	}
 	
