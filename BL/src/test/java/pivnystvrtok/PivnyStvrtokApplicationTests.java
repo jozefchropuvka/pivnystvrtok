@@ -3,9 +3,6 @@ package pivnystvrtok;
 import java.math.BigDecimal;
 import java.util.Arrays;
 
-import javax.validation.Valid;
-
-import org.bson.types.ObjectId;
 import org.joda.time.DateTime;
 import org.junit.Test;
 import org.junit.runner.RunWith;

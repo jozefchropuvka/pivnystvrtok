@@ -15,7 +15,7 @@ export class UserComponent implements OnInit {
   ngOnInit() {
     this.http.getCurrentUsername().subscribe(
       res => { 
-        this.username = res  || {};     
+        this.username = res.username  || '';     
       }
     );
   }

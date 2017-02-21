@@ -5,6 +5,7 @@ import { Observable } from 'rxjs/Observable';
 import { Router } from '@angular/router';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/map';
+import 'rxjs/add/observable/throw';
 
 @Injectable()
 export class HttpHelper {
@@ -24,7 +25,7 @@ export class HttpHelper {
   
   public login(event, username, password) {
     const headers = new Headers({ 'Content-Type': 'application/x-www-form-urlencoded'});
-    const options = new RequestOptions({ headers: headers });
+    const options = new RequestOptions({ headers: headers});
     const body = `username=${username}&password=${password}`;
     event.preventDefault();
     console.log(body);
@@ -54,7 +55,9 @@ export class HttpHelper {
   }
   
   public getCurrentUsername(): Observable<any> {
-    return this.http.get(this.currentUser)
+    const headers = new Headers({ 'Accepts': 'application/json'});
+    const options = new RequestOptions({ headers: headers });
+    return this.http.get(this.currentUser, options)
       .map(this.extractData)
       .catch(this.handleError);
   }
