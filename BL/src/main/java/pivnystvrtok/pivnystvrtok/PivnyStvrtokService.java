@@ -24,9 +24,14 @@ public class PivnyStvrtokService {
 	
 	public Vote getVote(){
 		PivnyStvrtok ps = pivnyStvrtokRepository.findByState(State.VOTING);
-		for (Vote vote : ps.getVotes()) {
-			if(vote.getUser().getUsername().equals(currentUserService.getUser().getUsername())){
-				return vote;
+		if(ps == null){
+			ps = pivnyStvrtokRepository.findByState(State.VOTED);
+		}
+		if(ps != null){
+			for (Vote vote : ps.getVotes()) {
+				if(vote.getUser().getUsername().equals(currentUserService.getUser().getUsername())){
+					return vote;
+				}
 			}
 		}
 		return null;

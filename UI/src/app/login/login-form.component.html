@@ -1,18 +1,14 @@
-
-<div fxLayoutAlign="center">
-	<form role="form"
-		(submit)="login($event, username.value, password.value)">
-		<div class="form-group">
-			<input type="text" #username class="form-control" id="username"
-				placeholder="Meno" required>
-		</div>
-		<div class="form-group">
-			<input type="password" #password class="form-control" id="password"
-				placeholder="Heslo" required>
-		</div>
-		<div fxLayoutAlign="center">
-			<button type="submit" class="btn btn-default">Prihlásiť sa</button>
-		</div>
-	</form>
-</div>
-
+<form role="form"
+	(submit)="login($event, username.value, password.value)">
+	<div class="form-group">
+		<input type="text" #username class="form-control" id="username"
+			placeholder="Meno" required>
+	</div>
+	<div class="form-group">
+		<input type="password" #password class="form-control" id="password"
+			placeholder="Heslo" required>
+	</div>
+	<div fxLayoutAlign="center">
+		<button type="submit" class="btn btn-default">Prihlásiť sa</button>
+	</div>
+</form>
