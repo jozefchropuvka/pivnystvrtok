@@ -13,7 +13,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import pivnystvrtok.common.BaseDocument;
 import pivnystvrtok.restaurant.Restaurant;
 
-public class PivnyStvrtok extends BaseDocument{
+public class PivnyStvrtok extends BaseDocument implements PivnyStvrtokSimple{
 	
 	@JsonProperty///TODO validation - has to be thursday
 	@NotNull

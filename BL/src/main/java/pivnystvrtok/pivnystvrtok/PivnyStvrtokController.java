@@ -18,4 +18,9 @@ public class PivnyStvrtokController {
 	public PivnyStvrtokSimple getSimpleCurrentPivnyStvrtok(){
 		return psService.getSimpleCurrent();
 	}
+	
+	@GetMapping("/vote")
+	public Vote getVote(){
+		return psService.getVote();
+	}
 }

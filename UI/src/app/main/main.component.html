@@ -1,5 +1,4 @@
-<div  fxLayoutAlign="center">
-<div class="main">
+<div *ngIf="authenticated" class="main">
 	<app-user></app-user>
-</div>
+	<app-vote></app-vote>
 </div>

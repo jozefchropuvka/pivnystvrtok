@@ -1,8 +1,10 @@
-import { Injectable } from '@angular/core';
+import { Injectable, EventEmitter } from '@angular/core';
 import { Headers, Http, RequestOptions, Response } from '@angular/http';
+import { LocalStorageService } from 'angular-2-local-storage';
 
 import { Observable } from 'rxjs/Observable';
 import { Router } from '@angular/router';
+import {ReplaySubject} from 'rxjs/ReplaySubject';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/observable/throw';
@@ -14,8 +16,9 @@ export class HttpHelper {
   public logoutUrl = this.base + '/logout';
   public psSimpleUrl = this.base + '/pivnyStvrtok/simple';
   public currentUser = this.base + '/user/current';
+  public voteUrl = this.base + '/pivnyStvrtok/vote';
 
-  constructor(private http: Http, private router: Router) {}
+  constructor(private http: Http, private router: Router, private storage: LocalStorageService) {}
 
   public getPivnyStvrtokSimple(): Observable<any> {
     return this.http.get(this.psSimpleUrl)
@@ -28,12 +31,10 @@ export class HttpHelper {
     const options = new RequestOptions({ headers: headers});
     const body = `username=${username}&password=${password}`;
     event.preventDefault();
-    console.log(body);
-    this.http.post(this.loginUrl, body, options)
-      .subscribe(
+    this.http.post(this.loginUrl, body, options).subscribe(
         response => {
-          console.log(response);
-        this.router.navigate(['main']);
+          this.storage.set('authenticated', response.statusText);
+          this.router.navigate(['main']);
         },
         error => {
           console.log(error.text());
@@ -46,7 +47,8 @@ export class HttpHelper {
     const options = new RequestOptions({ headers: headers });
     this.http.post(this.logoutUrl, '', options).subscribe(
       response => {
-      this.router.navigate(['']);
+      this.storage.remove('authenticated');
+      this.router.navigate(['']); 
       },
       error => {
         console.log('Error: ' + error);
@@ -58,6 +60,13 @@ export class HttpHelper {
     const headers = new Headers({ 'Accepts': 'application/json'});
     const options = new RequestOptions({ headers: headers });
     return this.http.get(this.currentUser, options)
+      .map(this.extractData)
+      .catch(this.handleError);
+  }
+  public getVote(): Observable<any> {
+    const headers = new Headers({ 'Accepts': 'application/json'});
+    const options = new RequestOptions({ headers: headers });
+    return this.http.get(this.voteUrl, options)
       .map(this.extractData)
       .catch(this.handleError);
   }

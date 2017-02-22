@@ -1,5 +1,7 @@
 package pivnystvrtok.pivnystvrtok;
 
+import javax.validation.constraints.NotNull;
+
 import org.joda.time.DateTime;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 
@@ -12,16 +14,20 @@ public class Vote {
 	
 	@JsonProperty
 	@DBRef
+	@NotNull
 	private User user;
 	
 	@JsonProperty
 	@DBRef
+	@NotNull
 	private Restaurant restaurant;
 	
 	@JsonProperty
+	@NotNull
 	private DateTime date;
 	
 	@JsonProperty
+	@NotNull
 	private DateTime dateVoted;
 	
 	public DateTime getDateVoted() {

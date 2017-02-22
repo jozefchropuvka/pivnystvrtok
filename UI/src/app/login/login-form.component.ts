@@ -8,10 +8,11 @@ import { HttpHelper } from '../helpers/http-helper';
   providers: [HttpHelper]
 })
 export class LoginFormComponent {
-
   constructor(private http: HttpHelper) { }
    login(event, username, password) {
-    this.http.login(event, username, password);
+   this.http.login(event, username, password);
   }
+  
+  
 }
 

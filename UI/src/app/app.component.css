@@ -1,0 +1,5 @@
+.containerX {
+  margin-top: 5px;
+  border: solid 1px #b6b6b6;
+  box-sizing: content-box !important;
+}

@@ -5,6 +5,8 @@ import { HttpModule } from '@angular/http';
 import { AlertModule } from 'ng2-bootstrap';
 import { RouterModule } from '@angular/router';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { LocalStorageModule } from 'angular-2-local-storage';
+
 
 import { AppComponent } from './app.component';
 import { LoginFormComponent } from './login/login-form.component';
@@ -13,6 +15,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { UserComponent } from './user/user.component';
 import { LoginButtonComponent } from './login/login-button.component';
 import { MainComponent } from './main/main.component';
+import { VoteComponent } from './vote/vote.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +23,8 @@ import { MainComponent } from './main/main.component';
     LoginFormComponent,
     UserComponent,
     LoginButtonComponent,
-    MainComponent
+    MainComponent,
+    VoteComponent
   ],
   imports: [
     BrowserModule,
@@ -28,7 +32,11 @@ import { MainComponent } from './main/main.component';
     HttpModule,
     AlertModule.forRoot(),
     AppRoutingModule,
-    FlexLayoutModule
+    FlexLayoutModule,
+    LocalStorageModule.withConfig({
+            prefix: 'app-ps',
+            storageType: 'localStorage'
+        })
   ],
   providers: [],
   bootstrap: [AppComponent]
