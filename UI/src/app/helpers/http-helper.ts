@@ -17,6 +17,7 @@ export class HttpHelper {
   public psSimpleUrl = this.base + '/pivnyStvrtok/simple';
   public currentUser = this.base + '/user/current';
   public voteUrl = this.base + '/pivnyStvrtok/vote';
+  public restaurantsUrl = this.base + '/restaurants';
 
   constructor(private http: Http, private router: Router, private storage: LocalStorageService) {}
 
@@ -67,6 +68,13 @@ export class HttpHelper {
     const headers = new Headers({ 'Accepts': 'application/json'});
     const options = new RequestOptions({ headers: headers });
     return this.http.get(this.voteUrl, options)
+      .map(this.extractData)
+      .catch(this.handleError);
+  }
+  public getRestaurants(): Observable<any> {
+    const headers = new Headers({ 'Accepts': 'application/json'});
+    const options = new RequestOptions({ headers: headers });
+    return this.http.get(this.restaurantsUrl, options)
       .map(this.extractData)
       .catch(this.handleError);
   }

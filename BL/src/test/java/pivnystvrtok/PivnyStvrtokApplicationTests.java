@@ -14,7 +14,7 @@ import org.springframework.util.Assert;
 import pivnystvrtok.pivnystvrtok.PivnyStvrtok;
 import pivnystvrtok.pivnystvrtok.PivnyStvrtokRepository;
 import pivnystvrtok.pivnystvrtok.Post;
-import pivnystvrtok.pivnystvrtok.State;
+import pivnystvrtok.pivnystvrtok.States;
 import pivnystvrtok.pivnystvrtok.Vote;
 import pivnystvrtok.restaurant.Address;
 import pivnystvrtok.restaurant.Restaurant;
@@ -68,7 +68,7 @@ public class PivnyStvrtokApplicationTests {
 		ps.setPosts(Arrays.asList(post,post,post));
 		ps.setVotes(Arrays.asList(vote,vote,vote));
 		ps.setRestaurant(restaurantRepository.findByName("Zámocký pivovar"));
-		ps.setState(State.VOTING);
+		ps.setState(States.VOTING);
 		psRepository.save(ps);
 	}
 	

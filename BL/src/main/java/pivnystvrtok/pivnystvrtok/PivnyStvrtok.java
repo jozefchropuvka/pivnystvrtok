@@ -1,5 +1,6 @@
 package pivnystvrtok.pivnystvrtok;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.validation.constraints.NotNull;
@@ -29,17 +30,19 @@ public class PivnyStvrtok extends BaseDocument implements PivnyStvrtokSimple{
 	
 	@JsonProperty
 	@NotNull
-	private State state;
+	private States state;
 	
 	@JsonProperty
 	private List<Post> posts;
-	
+
 	public DateTime getDate() {
 		return date;
 	}
 
 	public void setDate(DateTime date) {
-		this.date = date;
+		if(allowedDates().contains(date)){
+			this.date = date;
+		}		
 	}
 
 	public Restaurant getRestaurant() {
@@ -58,11 +61,11 @@ public class PivnyStvrtok extends BaseDocument implements PivnyStvrtokSimple{
 		this.votes = votes;
 	}
 
-	public State getState() {
+	public States getState() {
 		return state;
 	}
 
-	public void setState(State state) {
+	public void setState(States state) {
 		this.state = state;
 	}
 
@@ -74,4 +77,25 @@ public class PivnyStvrtok extends BaseDocument implements PivnyStvrtokSimple{
 		this.posts = posts;
 	}
 	
+	public List<DateTime> allowedDates(){
+		List<DateTime> allowedDates = new ArrayList<>();
+		if(state.equals(States.FINISHED)){
+			DateTime today = new DateTime();
+			int month = today.getMonthOfYear();
+			DateTime nextDay = new DateTime();
+
+		//find out where are we now
+		
+			month++;
+			nextDay = new DateTime().plusMonths(1);
+
+			while(month == nextDay.getMonthOfYear()){
+				if(nextDay.dayOfWeek().equals(4)){
+					allowedDates.add(nextDay);
+				}
+				nextDay = nextDay.plusDays(1);
+			}
+		}
+		return allowedDates;
+	}
 }

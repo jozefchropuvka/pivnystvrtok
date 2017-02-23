@@ -14,18 +14,18 @@ public class PivnyStvrtokService {
 	CurrentUserDetailsService currentUserService;
 	
 	public PivnyStvrtokSimple getSimpleCurrent(){
-		PivnyStvrtokSimple simple = (PivnyStvrtokSimple) pivnyStvrtokRepository.findByState(State.VOTED);
+		PivnyStvrtokSimple simple = (PivnyStvrtokSimple) pivnyStvrtokRepository.findByState(States.VOTED);
 		if( simple == null){
-			simple = (PivnyStvrtokSimple) pivnyStvrtokRepository.findByState(State.VOTING);
+			simple = (PivnyStvrtokSimple) pivnyStvrtokRepository.findByState(States.VOTING);
 		}
 		return simple;
 
 	}
 	
 	public Vote getVote(){
-		PivnyStvrtok ps = pivnyStvrtokRepository.findByState(State.VOTING);
+		PivnyStvrtok ps = pivnyStvrtokRepository.findByState(States.VOTING);
 		if(ps == null){
-			ps = pivnyStvrtokRepository.findByState(State.VOTED);
+			ps = pivnyStvrtokRepository.findByState(States.VOTED);
 		}
 		if(ps != null){
 			for (Vote vote : ps.getVotes()) {
@@ -35,5 +35,9 @@ public class PivnyStvrtokService {
 			}
 		}
 		return null;
+	}
+	
+	public PivnyStvrtok create(PivnyStvrtok entity){
+		return pivnyStvrtokRepository.save(entity);
 	}
 }

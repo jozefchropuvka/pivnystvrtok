@@ -7,5 +7,5 @@ import pivnystvrtok.restaurant.Restaurant;
 public interface PivnyStvrtokSimple {
 	DateTime getDate();
 	Restaurant getRestaurant();
-	State getState();
+	States getState();
 }
