@@ -1,4 +1,4 @@
-package pivnystvrtok.pivnystvrtok;
+package pivnystvrtok.statemachine;
 
 public enum Events {
 	CREATE,UPDATE;	

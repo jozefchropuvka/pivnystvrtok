@@ -1,4 +1,4 @@
-package pivnystvrtok;
+package pivnystvrtok.statemachine;
 
 import java.util.EnumSet;
 
@@ -13,12 +13,9 @@ import org.springframework.statemachine.listener.StateMachineListener;
 import org.springframework.statemachine.listener.StateMachineListenerAdapter;
 import org.springframework.statemachine.state.State;
 
-import pivnystvrtok.pivnystvrtok.Events;
-import pivnystvrtok.pivnystvrtok.States;
-
 @Configuration
 @EnableStateMachine
-public class PivnyStvrtokStateMachineConfig extends EnumStateMachineConfigurerAdapter<States, Events>{
+public class StateMachineConfig extends EnumStateMachineConfigurerAdapter<States, Events>{
 	@Override
     public void configure(StateMachineConfigurationConfigurer<States, Events> config)
             throws Exception {

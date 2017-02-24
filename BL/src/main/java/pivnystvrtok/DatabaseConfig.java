@@ -1,8 +1,11 @@
 package pivnystvrtok;
 
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.mongodb.config.AbstractMongoConfiguration;
+import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.repository.config.EnableMongoRepositories;
+import org.springframework.data.mongodb.core.WriteResultChecking;
 
 import com.mongodb.Mongo;
 import com.mongodb.MongoClient;
@@ -24,5 +27,13 @@ public class DatabaseConfig extends AbstractMongoConfiguration {
 	public Mongo mongo() throws Exception {
 		return new MongoClient("localhost" , 27017);
 	}
-
+	
+	@Override
+	@Bean
+	public MongoTemplate mongoTemplate() throws Exception {
+		MongoTemplate mt = new MongoTemplate(mongo(), getDatabaseName());
+		mt.setWriteResultChecking(WriteResultChecking.EXCEPTION);
+		//mt.setWriteConcern(); default is MongoDB driver’s DB or Collection setting
+		return mt;
+	}
 }
