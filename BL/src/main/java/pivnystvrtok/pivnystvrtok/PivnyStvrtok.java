@@ -6,12 +6,14 @@ import javax.validation.constraints.NotNull;
 
 import org.joda.time.DateTime;
 import org.springframework.data.mongodb.core.mapping.DBRef;
+import org.springframework.data.mongodb.core.mapping.Document;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import pivnystvrtok.common.BaseDocument;
 import pivnystvrtok.restaurant.Restaurant;
 
+@Document
 public class PivnyStvrtok extends BaseDocument implements PivnyStvrtokSimple{
 	
 	@JsonProperty

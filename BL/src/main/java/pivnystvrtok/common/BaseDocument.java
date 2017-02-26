@@ -10,7 +10,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import pivnystvrtok.statemachine.States;
-@Document
+
 public class BaseDocument {
 
 	@Id
