@@ -1,11 +1,9 @@
 package pivnystvrtok.common;
 
-import javax.validation.constraints.NotNull;
-
-import org.hibernate.validator.constraints.NotEmpty;
+import org.joda.time.DateTime;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.mongodb.core.index.Indexed;
-import org.springframework.data.mongodb.core.mapping.Document;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -15,7 +13,6 @@ public class BaseDocument {
 
 	@Id
     @JsonProperty
-    @NotEmpty
     @Indexed
     private String id;	
 
@@ -24,7 +21,6 @@ public class BaseDocument {
 	}
 
 	@JsonProperty
-	@NotNull
 	private States state;
 	
 	public States getState() {
@@ -34,4 +30,7 @@ public class BaseDocument {
 	public void setState(States state) {
 		this.state = state;
 	}
+	
+	@LastModifiedDate
+	private DateTime lastModified;
 }

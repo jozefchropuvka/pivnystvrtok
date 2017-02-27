@@ -2,8 +2,6 @@ package pivnystvrtok.pivnystvrtok;
 
 import java.util.List;
 
-import javax.validation.constraints.NotNull;
-
 import org.joda.time.DateTime;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -17,12 +15,10 @@ import pivnystvrtok.restaurant.Restaurant;
 public class PivnyStvrtok extends BaseDocument implements PivnyStvrtokSimple{
 	
 	@JsonProperty
-	@NotNull
 	private DateTime date;
 	
 	@JsonProperty
 	@DBRef
-	@NotNull
 	private Restaurant restaurant;
 	
 	@JsonProperty

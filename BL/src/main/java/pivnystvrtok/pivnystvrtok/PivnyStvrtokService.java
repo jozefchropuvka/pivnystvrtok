@@ -17,15 +17,7 @@ public class PivnyStvrtokService extends BaseService<PivnyStvrtok>{
 	public PivnyStvrtokRepository pivnyStvrtokRepository;	
 	
 	
-	public PivnyStvrtokSimple getSimpleCurrent(){
-		PivnyStvrtokSimple simple = (PivnyStvrtokSimple) pivnyStvrtokRepository.findByState(States.VOTED);
-		if( simple == null){
-			simple = (PivnyStvrtokSimple) pivnyStvrtokRepository.findByState(States.VOTING);
-		}
-		return simple;
-
-	}
-	
+/*	
 	public Vote getVote(){
 		PivnyStvrtok ps = pivnyStvrtokRepository.findByState(States.VOTING);
 		if(ps == null){
@@ -39,7 +31,7 @@ public class PivnyStvrtokService extends BaseService<PivnyStvrtok>{
 			}
 		}
 		return null;
-	}
+	}*/
 	
 	public PivnyStvrtok create(PivnyStvrtok entity){
 		return pivnyStvrtokRepository.save(entity);

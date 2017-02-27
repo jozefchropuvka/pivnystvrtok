@@ -52,7 +52,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		http.cors().and().csrf().disable().exceptionHandling().authenticationEntryPoint(restAuthenticationEntryPoint).and()
-				.authorizeRequests().antMatchers("/pivnyStvrtok/simple").permitAll().anyRequest().fullyAuthenticated().and().formLogin()
+				.authorizeRequests().antMatchers("/ps/search/currentSimple").permitAll().anyRequest().fullyAuthenticated().and().formLogin()
 				.permitAll().successHandler(authenticationSuccessHandler)
 				.failureHandler(new SimpleUrlAuthenticationFailureHandler()).and().logout().logoutSuccessHandler(new HttpStatusReturningLogoutSuccessHandler()).permitAll();
 	}
@@ -62,7 +62,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		auth.userDetailsService(userDetailsService).passwordEncoder(new BCryptPasswordEncoder());
 	}
 	
-	@Bean
+/*	@Bean
 	CorsConfigurationSource corsConfigurationSource() {
 		CorsConfiguration configuration = new CorsConfiguration();
 		configuration.setAllowedOrigins(Arrays.asList("http://localhost:4200"));
@@ -72,7 +72,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
 		source.registerCorsConfiguration("/**", configuration);
 		return source;
-	}
+	}*/
 
 }
 
