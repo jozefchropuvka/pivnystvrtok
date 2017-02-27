@@ -12,12 +12,12 @@ import pivnystvrtok.statemachine.States;
 import pivnystvrtok.user.CurrentUserDetailsService;
 
 @Service
-public class PivnyStvrtokService extends BaseService<PivnyStvrtok>{
+public class PivnyStvrtokService 	{
+/*extends BaseService<PivnyStvrtok>{
 	@Autowired
 	public PivnyStvrtokRepository pivnyStvrtokRepository;	
 	
 	
-/*	
 	public Vote getVote(){
 		PivnyStvrtok ps = pivnyStvrtokRepository.findByState(States.VOTING);
 		if(ps == null){
@@ -31,7 +31,7 @@ public class PivnyStvrtokService extends BaseService<PivnyStvrtok>{
 			}
 		}
 		return null;
-	}*/
+	}
 	
 	public PivnyStvrtok create(PivnyStvrtok entity){
 		return pivnyStvrtokRepository.save(entity);
@@ -57,5 +57,5 @@ public class PivnyStvrtokService extends BaseService<PivnyStvrtok>{
 			}
 		}
 		return allowedDates;
-	}
+	}*/
 }

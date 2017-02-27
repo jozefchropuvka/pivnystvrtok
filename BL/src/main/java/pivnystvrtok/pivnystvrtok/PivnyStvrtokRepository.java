@@ -17,7 +17,7 @@ public interface PivnyStvrtokRepository extends MongoRepository<PivnyStvrtok, St
 	PivnyStvrtok findCurrentSimple();
 	
 	@Query(value="{ $or: [ { state: 'VOTING' }, { state: 'VOTED' } ] }")
-	PivnyStvrtok findCurrent();
+	List<PivnyStvrtok> findCurrent();
 	
 	List<PivnyStvrtok> findByState(States state);
 }		

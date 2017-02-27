@@ -14,7 +14,7 @@ export class HttpHelper {
   public base = 'http://localhost:8080';
   public loginUrl = this.base + '/login';
   public logoutUrl = this.base + '/logout';
-  public psSimpleUrl = this.base + '/pivnyStvrtok/simple';
+  public psSimpleUrl = this.base + '/ps/search/currentSimple?projection=simple';
   public currentUser = this.base + '/user/current';
   public voteUrl = this.base + '/pivnyStvrtok/vote';
   public restaurantsUrl = this.base + '/restaurants';

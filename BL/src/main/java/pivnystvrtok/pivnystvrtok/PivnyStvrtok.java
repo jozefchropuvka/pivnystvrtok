@@ -12,7 +12,7 @@ import pivnystvrtok.common.BaseDocument;
 import pivnystvrtok.restaurant.Restaurant;
 
 @Document
-public class PivnyStvrtok extends BaseDocument implements PivnyStvrtokSimple{
+public class PivnyStvrtok extends BaseDocument {
 	
 	@JsonProperty
 	private DateTime date;
