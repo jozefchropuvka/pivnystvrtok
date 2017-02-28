@@ -4,6 +4,7 @@ import java.math.BigDecimal;
 import java.util.Arrays;
 
 import org.joda.time.DateTime;
+import org.joda.time.DateTimeZone;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -61,10 +62,10 @@ public class PivnyStvrtokApplicationTests {
 		post.setEntry("DFLSDFDSLFSDLFJ a lksjfala sjflaskjdfA <fldkj aldfkj dslfjsdlf jsdlvfj asfljasdas dfas dfas fas dfas df");
 		post.setUser(currentUserService.getUser());
 		Vote vote = new Vote();
-		vote.setDate(new DateTime());
+		vote.setDate(new DateTime(2017,03,02,20,00));
 		vote.setRestaurant(restaurantRepository.findByName("Zámocký pivovar"));
 		vote.setUser(currentUserService.getUser());
-		ps.setDate(new DateTime());
+		ps.setDate(new DateTime(2017,03,02,20,00));
 		ps.setPosts(Arrays.asList(post,post,post));
 		ps.setVotes(Arrays.asList(vote,vote,vote));
 		ps.setRestaurant(restaurantRepository.findByName("Zámocký pivovar"));

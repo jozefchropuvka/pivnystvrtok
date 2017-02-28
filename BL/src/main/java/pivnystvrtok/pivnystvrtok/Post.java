@@ -1,6 +1,5 @@
 package pivnystvrtok.pivnystvrtok;
 
-import org.bson.types.ObjectId;
 import org.joda.time.DateTime;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.mongodb.core.mapping.DBRef;
@@ -13,7 +12,7 @@ import pivnystvrtok.user.User;
 public class Post {
 	
 	@JsonProperty
-	private ObjectId id;
+	private String id;
 	
 	@JsonProperty
 	private String entry;
@@ -26,7 +25,7 @@ public class Post {
 	@LastModifiedDate
 	private DateTime date;
 
-	public ObjectId getId() {
+	public String getId() {
 		return id;
 	}
 

@@ -8,8 +8,8 @@ import org.springframework.validation.Validator;
 import org.springframework.util.Assert;
 import pivnystvrtok.ApplicationExceptionCode;
 
-@Component("beforeCreatePivnyStvrtokValidatorCreate")
-public class PivnyStvrtokValidatorCreate implements Validator {
+@Component("beforeSavePivnyStvrtokValidatorUpdate")
+public class PivnyStvrtokValidatorUpdate implements Validator {
 
 	@Autowired
 	PivnyStvrtokRepository repo;
@@ -22,7 +22,7 @@ public class PivnyStvrtokValidatorCreate implements Validator {
 	@Override
 	public void validate(Object target, Errors errors) {
 		PivnyStvrtok p = (PivnyStvrtok) target;
-		if (!repo.findCurrent().isEmpty()) {
+		if (repo.findCurrent().size() > 1) {
 			errors.reject(ApplicationExceptionCode.StateIsNotFinished.getMessage());
 		}
 		Assert.notNull(p.getDate());
