@@ -1,12 +1,9 @@
 package pivnystvrtok.user;
 
-import javax.validation.constraints.NotNull;
-
-import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import pivnystvrtok.common.BaseDocument;
@@ -15,16 +12,13 @@ import pivnystvrtok.common.BaseDocument;
 public class User extends BaseDocument{
 
     @JsonProperty
-    @NotEmpty
     @Indexed(unique=true) //TODO doesn't work???
     private String username;
 
-    @JsonIgnore
-    @NotEmpty
+    @JsonIgnoreProperties(allowSetters = true)
     private String password; //hashed
 
     @JsonProperty
-    @NotNull(message="the role is mandatory")
     private Role role;
 
 	public String getUsername() {
@@ -34,7 +28,7 @@ public class User extends BaseDocument{
 	public void setUsername(String username) {
 		this.username = username;
 	}
-
+	
 	public String getPassword() {
 		return password;
 	}

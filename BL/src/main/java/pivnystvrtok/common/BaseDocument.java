@@ -7,28 +7,17 @@ import org.springframework.data.mongodb.core.index.Indexed;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-import pivnystvrtok.statemachine.States;
+import pivnystvrtok.pivnystvrtok.States;
 
 public class BaseDocument {
 
 	@Id
     @JsonProperty
-    @Indexed
+    @Indexed(unique=true)
     private String id;	
 
 	public String getId() {
 		return id;
-	}
-
-	@JsonProperty
-	private States state;
-	
-	public States getState() {
-		return state;
-	}
-
-	public void setState(States state) {
-		this.state = state;
 	}
 	
 	@LastModifiedDate

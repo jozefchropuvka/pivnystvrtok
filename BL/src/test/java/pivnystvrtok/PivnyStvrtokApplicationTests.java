@@ -15,11 +15,11 @@ import org.springframework.util.Assert;
 import pivnystvrtok.pivnystvrtok.PivnyStvrtok;
 import pivnystvrtok.pivnystvrtok.PivnyStvrtokRepository;
 import pivnystvrtok.pivnystvrtok.Post;
+import pivnystvrtok.pivnystvrtok.States;
 import pivnystvrtok.pivnystvrtok.Vote;
 import pivnystvrtok.restaurant.Address;
 import pivnystvrtok.restaurant.Restaurant;
 import pivnystvrtok.restaurant.RestaurantRepository;
-import pivnystvrtok.statemachine.States;
 import pivnystvrtok.user.CurrentUserDetailsService;
 import pivnystvrtok.user.Role;
 import pivnystvrtok.user.User;
@@ -28,9 +28,6 @@ import pivnystvrtok.user.UserServiceImpl;
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class PivnyStvrtokApplicationTests {
-
-	@Autowired
-	UserServiceImpl userService;
 
 	@Autowired
 	PivnyStvrtokRepository psRepository;
@@ -43,15 +40,6 @@ public class PivnyStvrtokApplicationTests {
 	
 	@Test
 	public void contextLoads() {
-	}
-
-	@Test
-	public void createUser() {
-		User user = new User();
-		user.setPassword("testUser");
-		user.setUsername("testUser");
-		user.setRole(Role.USER);
-		Assert.notNull(userService.create(user));
 	}
 	
 	@Test

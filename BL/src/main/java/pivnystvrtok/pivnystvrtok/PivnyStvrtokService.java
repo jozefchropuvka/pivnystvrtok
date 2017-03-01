@@ -8,7 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import pivnystvrtok.common.BaseService;
-import pivnystvrtok.statemachine.States;
 import pivnystvrtok.user.CurrentUserDetailsService;
 
 @Service
