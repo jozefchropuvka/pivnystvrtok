@@ -3,7 +3,7 @@ package pivnystvrtok.user;
 import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import pivnystvrtok.common.BaseDocument;
@@ -15,12 +15,13 @@ public class User extends BaseDocument{
     @Indexed(unique=true) //TODO doesn't work???
     private String username;
 
-    @JsonIgnoreProperties(allowSetters = true)
+
+    @JsonIgnore
     private String password; //hashed
 
     @JsonProperty
     private Role role;
-
+    
 	public String getUsername() {
 		return username;
 	}
@@ -28,11 +29,11 @@ public class User extends BaseDocument{
 	public void setUsername(String username) {
 		this.username = username;
 	}
-	
+	@JsonIgnore
 	public String getPassword() {
 		return password;
 	}
-
+	@JsonProperty
 	public void setPassword(String password) {
 		this.password = password;
 	}
