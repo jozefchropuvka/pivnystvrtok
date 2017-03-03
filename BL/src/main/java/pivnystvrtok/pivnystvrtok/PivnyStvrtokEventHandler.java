@@ -46,7 +46,7 @@ public class PivnyStvrtokEventHandler {
 		}
 		Assert.notNull(ps.getState());
 		PivnyStvrtok entity = beforeUpdateList.get(0);
-		if(!entity.getState().equals(ps.getState()) && !currentUser.getUser().getRole().equals(Role.ADMIN)){
+		if(!entity.getState().equals(ps.getState()) && !currentUser.getUser().getRole().equals(Role.ROLE_ADMIN)){
 			throw new ValidationException(ApplicationExceptionCode.OnlyAdminAllowedChangeState.getMessage());
 		}
 		Assert.notNull(ps.getDate());

@@ -1,33 +1,37 @@
 package pivnystvrtok.pivnystvrtok;
 
-import javax.validation.constraints.NotNull;
-
 import org.joda.time.DateTime;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.mapping.DBRef;
+import org.springframework.data.rest.core.annotation.RestResource;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import pivnystvrtok.restaurant.Restaurant;
+import pivnystvrtok.user.CurrentUserDetailsService;
 import pivnystvrtok.user.User;
 
 public class Vote {
 	
+	@Autowired
+	CurrentUserDetailsService currentUser;
+
 	@JsonProperty
 	@DBRef
-	@NotNull
+//	@NotNull
 	private User user;
 	
 	@JsonProperty
 	@DBRef
-	@NotNull
+//	@NotNull
 	private Restaurant restaurant;
 	
 	@JsonProperty
-	@NotNull
+//	@NotNull
 	private DateTime date;
 	
 	@JsonProperty
-	@NotNull
+//	@NotNull
 	private DateTime dateVoted;
 	
 	public DateTime getDateVoted() {
@@ -39,8 +43,8 @@ public class Vote {
 	public User getUser() {
 		return user;
 	}
-	public void setUser(User user) {
-		this.user = user;
+	public void setUser() {
+		this.user = currentUser.getUser();
 	}
 	public Restaurant getRestaurant() {
 		return restaurant;

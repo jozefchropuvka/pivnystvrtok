@@ -7,8 +7,6 @@ import org.springframework.data.mongodb.core.index.Indexed;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-import pivnystvrtok.pivnystvrtok.States;
-
 public class BaseDocument {
 
 	@Id
