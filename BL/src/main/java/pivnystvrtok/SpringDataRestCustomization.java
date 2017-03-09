@@ -7,6 +7,7 @@ import java.util.Map;
 
 import org.springframework.beans.factory.ListableBeanFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.rest.core.config.RepositoryRestConfiguration;
 import org.springframework.data.rest.core.event.ValidatingRepositoryEventListener;
 import org.springframework.data.rest.webmvc.config.RepositoryRestConfigurerAdapter;
 import org.springframework.stereotype.Component;
@@ -43,12 +44,12 @@ public class SpringDataRestCustomization extends RepositoryRestConfigurerAdapter
         }
     }
     
-	/*  @Override
+	  @Override
 	  public void configureRepositoryRestConfiguration(RepositoryRestConfiguration config) {
 		config.getCorsRegistry().addMapping("/**")
 	      .allowedOrigins("http://localhost:4200")
 	      .allowedMethods("*")
 	      .allowedHeaders("*")
 	      .allowCredentials(true);
-	  }*/
+	  }
 }

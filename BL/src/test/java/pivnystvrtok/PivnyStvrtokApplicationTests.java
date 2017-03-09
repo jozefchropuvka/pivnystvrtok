@@ -4,13 +4,11 @@ import java.math.BigDecimal;
 import java.util.Arrays;
 
 import org.joda.time.DateTime;
-import org.joda.time.DateTimeZone;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
-import org.springframework.util.Assert;
 
 import pivnystvrtok.pivnystvrtok.PivnyStvrtok;
 import pivnystvrtok.pivnystvrtok.PivnyStvrtokRepository;
@@ -21,9 +19,6 @@ import pivnystvrtok.restaurant.Address;
 import pivnystvrtok.restaurant.Restaurant;
 import pivnystvrtok.restaurant.RestaurantRepository;
 import pivnystvrtok.user.CurrentUserDetailsService;
-import pivnystvrtok.user.Role;
-import pivnystvrtok.user.User;
-import pivnystvrtok.user.UserServiceImpl;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -52,7 +47,6 @@ public class PivnyStvrtokApplicationTests {
 		Vote vote = new Vote();
 		vote.setDate(new DateTime(2017,03,02,20,00));
 		vote.setRestaurant(restaurantRepository.findByName("Zámocký pivovar"));
-		vote.setUser(currentUserService.getUser());
 		ps.setDate(new DateTime(2017,03,02,20,00));
 		ps.setPosts(Arrays.asList(post,post,post));
 		ps.setVotes(Arrays.asList(vote,vote,vote));
