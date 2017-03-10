@@ -5,10 +5,12 @@ export class DateFormatter {
    constructor(){} 
     
    dayMonthYear(data){
-    return `${data.dayOfMonth}. ${data.monthOfYear}. ${data.year}`;    
-   }
+    const d = new Date(data);
+    return `${d.getDate()}. ${d.getMonth() + 1}. ${d.getUTCFullYear()}`;    
+   } 
     
    dayMonthYearTime(data){
-    return `${data.dayOfMonth}. ${data.monthOfYear}. ${data.year} ${data.hourOfDay}:${data.minuteOfHour}`;    
+    const d = new Date(data);
+    return `${d.getDate()}. ${d.getMonth() + 1}. ${d.getUTCFullYear()} ${d.getHours()}:00`;    
    }
 }

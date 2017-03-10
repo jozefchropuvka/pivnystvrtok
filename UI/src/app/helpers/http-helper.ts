@@ -16,7 +16,7 @@ export class HttpHelper {
   public logoutUrl = this.base + '/logout';
   public psSimpleUrl = this.base + '/ps/search/currentSimple?projection=simple';
   public currentUser = this.base + '/user/current';
-  public voteUrl = this.base + '/pivnyStvrtok/vote';
+  public voteUrl = this.base + '/ps/vote';
   public restaurantsUrl = this.base + '/restaurants';
 
   constructor(private http: Http, private router: Router, private storage: LocalStorageService) {}
