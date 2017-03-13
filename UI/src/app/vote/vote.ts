@@ -1,3 +1,3 @@
 export class Vote {
-  constructor (date: string, restaurant: {}) { }  
+  constructor (date: string, restaurant: string) { }  
 }

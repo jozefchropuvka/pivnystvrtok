@@ -1,22 +1,24 @@
 <div>
 <div> 
-<p *ngIf="voted">Tvoje posledné hlasovanie bolo ({{dateVoted}}): Dátum: {{date}}, reštaurácia: {{restaurant}}</p>
+<p *ngIf="voted">Tvoje posledné hlasovanie bolo ({{dateVoted}}): Dátum: {{date}}, reštaurácia: {{restaurant.name}}</p>
 <p *ngIf="!voted">Za tento pivný štvrtok si ešte nehlasoval!</p>
 </div>
 <!-- <div class="container"> -->
-<div style="background-color: white;">{{diagnostic}}</div>
-    <form>
+<!-- <div style="background-color: white;">{{diagnostic}}</div> -->
+    <form (ngSubmit)="onSubmit()" #appVote="ngForm">
       <div class="form-group">
         <label for="restaurant">Reštaurácia</label>
          <select class="form-control" id="restaurant" required [(ngModel)]="model.restaurant" name="restaurant.name">
-   			 <option *ngFor="let rest of restaurants" [value]="rest">{{rest.name}}</option>
+   			 <option *ngFor="let rest of restaurants" [value]="rest._links.self.href">{{rest.name}}</option>
  		 </select>
       </div>
       <div class="form-group">
         <label for="date">Dátum</label>
-        <input type="text" class="form-control" id="date" required [(ngModel)]="model.date" name="date">
+        <select class="form-control" id="date" required [(ngModel)]="model.date" name="date">
+   			 <option *ngFor="let da of allowedDates" [value]="da">{{da | date: 'dd. MM. yyyy'}}</option>
+ 		</select>
       </div>
-      <button type="submit" class="btn btn-success">Hlasovať</button>
+      <button type="submit" class="btn btn-success" [disabled]="!appVote.form.valid">Hlasovať</button>
     </form>
 <!-- </div> -->
 </div>
