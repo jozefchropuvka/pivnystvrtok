@@ -1,7 +1,5 @@
 package pivnystvrtok.pivnystvrtok;
 
-import javax.validation.constraints.NotNull;
-
 import org.joda.time.DateTime;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.mongodb.core.mapping.DBRef;
@@ -25,9 +23,16 @@ public class Vote {
 	private DateTime date;
 	
 	@JsonProperty
-	@LastModifiedDate
-	private DateTime lastModified;
+	private DateTime dateVoted;
 	
+	public DateTime getDateVoted() {
+		return dateVoted;
+	}
+
+	public void setDateVoted(DateTime dateVoted) {
+		this.dateVoted = dateVoted;
+	}
+
 	public Vote() {
 		// TODO Auto-generated constructor stub
 	}
