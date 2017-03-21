@@ -18,7 +18,7 @@ export class VoteComponent implements OnInit {
   restaurant;
   restaurants;
   submitted = false;
-  model = new Vote("","");
+  model = new Vote('', '');
   
   constructor(private http: HttpHelper, private f: DateFormatter) { }
 
