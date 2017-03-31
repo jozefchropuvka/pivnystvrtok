@@ -12,18 +12,18 @@ import org.springframework.security.access.prepost.PreAuthorize;
 @PreAuthorize("hasRole('ROLE_ADMIN')")
 public interface RestaurantRepository extends MongoRepository<Restaurant, String>{
 	
-	@PreAuthorize("hasRole('ROLE_USER')")
+	@PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_ADMIN')")
 	Restaurant findByName(String name);
 	
-	@PreAuthorize("hasRole('ROLE_USER')")
+	@PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_ADMIN')")
 	@Override
 	Restaurant findOne(String id);
 	
-	@PreAuthorize("hasRole('ROLE_USER')")
+	@PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_ADMIN')")
 	@Override
 	List<Restaurant> findAll();
 	
-	@PreAuthorize("hasRole('ROLE_USER')")
+	@PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_ADMIN')")
 	@Override
 	Page<Restaurant> findAll(Pageable pageable);
 }

@@ -5,6 +5,8 @@ import { LoginFormComponent } from './login/login-form.component';
 import { LoginButtonComponent } from './login/login-button.component';
 import { UserComponent } from './user/user.component';
 import { MainComponent } from './main/main.component';
+import { nickNameRoutes } from './nick-name/index';
+import { chatComponentRoutes } from './chat/index';
 
 const routes: Routes = [
   {
@@ -22,7 +24,9 @@ const routes: Routes = [
   {
     path: 'main',
     component: MainComponent
-  }
+  },
+  ...nickNameRoutes,
+  ...chatComponentRoutes
 ];
 @NgModule({
 

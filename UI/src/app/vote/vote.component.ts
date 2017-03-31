@@ -13,11 +13,12 @@ import { Vote } from './vote';
 export class VoteComponent implements OnInit {
   voted;
   date;
+  allowedDates;
   dateVoted;
   restaurant;
   restaurants;
   submitted = false;
-  model = new Vote("","");
+  model = new Vote('', '');
   
   constructor(private http: HttpHelper, private f: DateFormatter) { }
 
@@ -25,18 +26,31 @@ export class VoteComponent implements OnInit {
      this.http.getRestaurants().subscribe(res => {
       this.restaurants = res._embedded.restaurants;
     });
+    this.http.getAllowedDates().subscribe(res => {
+      this.allowedDates = res;  
+    });
     this.http.getVote().subscribe(
       res => { 
-        this.voted = true;
+        this.voted = res.date;
         this.date = this.f.dayMonthYear(res.date);
-        this.dateVoted = this.f.dayMonthYearTime(res.date);
-        this.restaurant = res.restaurant.name;
-        this.model = new Vote(this.date, this.restaurants);     
+        this.dateVoted = this.f.dayMonthYearHourMinutes(res.dateVoted);
+        this.restaurant = res.restaurant;
+        this.model = new Vote(this.date, this.restaurant);     
       }
     );
   }
    
-  onSubmit() { this.submitted = true; }
+  onSubmit() {
+    this.http.submitVote(JSON.stringify(this.model)).subscribe(
+      res => {
+        this.voted = res.date;
+        this.date = this.f.dayMonthYear(res.date);
+        this.dateVoted = this.f.dayMonthYearHourMinutes(res.dateVoted);
+        this.restaurant = res.restaurant;
+        this.model = new Vote(this.date, this.restaurant);
+        this.submitted = true;
+      });
+  }
 
 
   // TODO: Remove this when we're done

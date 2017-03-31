@@ -5,6 +5,8 @@ import java.util.List;
 import org.joda.time.DateTime;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.hateoas.Resource;
+import org.springframework.messaging.handler.annotation.MessageMapping;
+import org.springframework.messaging.handler.annotation.SendTo;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -25,8 +27,20 @@ public class PivnyStvrtokController {
 		return service.submitVote(vote);
 	}
 	
+	@GetMapping(value="/vote")
+	public Vote vote(){
+		return service.getVote();
+	}
+	
 	@GetMapping(value="/allowedDates")
 	public List<DateTime> allowedDates(){
 		return service.allowedDates();
 	}
+	
+	@MessageMapping("/posts")
+	@SendTo("/topic/posts")
+	public List<Post> greeting(Post post) throws Exception {
+	    return service.submitPost(post);
+	}
+	
 }

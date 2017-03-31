@@ -18,6 +18,7 @@ export class HttpHelper {
   public currentUser = this.base + '/user/current';
   public voteUrl = this.base + '/ps/vote';
   public restaurantsUrl = this.base + '/restaurants';
+  public allowedDatesUrl = this.base + '/ps/allowedDates';
 
   constructor(private http: Http, private router: Router, private storage: LocalStorageService) {}
 
@@ -56,7 +57,14 @@ export class HttpHelper {
       }
     );
   }
-  
+  public submitVote(vote): Observable<any> {
+    const headers = new Headers({ 'Content-Type': 'application/json', 'Accepts': 'application/json'});
+    const options = new RequestOptions({ headers: headers});
+    event.preventDefault();
+    return this.http.post(this.voteUrl, vote, options)
+      .map(this.extractData)
+      .catch(this.handleError);
+  }
   public getCurrentUsername(): Observable<any> {
     const headers = new Headers({ 'Accepts': 'application/json'});
     const options = new RequestOptions({ headers: headers });
@@ -68,6 +76,13 @@ export class HttpHelper {
     const headers = new Headers({ 'Accepts': 'application/json'});
     const options = new RequestOptions({ headers: headers });
     return this.http.get(this.voteUrl, options)
+      .map(this.extractData)
+      .catch(this.handleError);
+  }
+  public getAllowedDates(): Observable<any> {
+    const headers = new Headers({ 'Accepts': 'application/json'});
+    const options = new RequestOptions({ headers: headers });
+    return this.http.get(this.allowedDatesUrl, options)
       .map(this.extractData)
       .catch(this.handleError);
   }

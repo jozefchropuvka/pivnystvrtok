@@ -16,6 +16,8 @@ import { UserComponent } from './user/user.component';
 import { LoginButtonComponent } from './login/login-button.component';
 import { MainComponent } from './main/main.component';
 import { VoteComponent } from './vote/vote.component';
+import { ChatComponent } from './chat/chat.component';
+import { NickNameComponent } from './nick-name/nick-name.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +26,9 @@ import { VoteComponent } from './vote/vote.component';
     UserComponent,
     LoginButtonComponent,
     MainComponent,
-    VoteComponent
+    VoteComponent,
+    ChatComponent,
+    NickNameComponent
   ],
   imports: [
     BrowserModule,
