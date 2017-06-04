@@ -1,5 +1,7 @@
 package pivnystvrtok;
 
+import static org.assertj.core.api.Assertions.assertThat;
+
 import java.math.BigDecimal;
 import java.util.Arrays;
 
@@ -19,9 +21,12 @@ import pivnystvrtok.restaurant.Address;
 import pivnystvrtok.restaurant.Restaurant;
 import pivnystvrtok.restaurant.RestaurantRepository;
 import pivnystvrtok.user.CurrentUserDetailsService;
+import pivnystvrtok.user.UserServiceImpl;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
+@WithMockCustomUser
+//@TestPropertySource(properties = "debug=true")
 public class PivnyStvrtokApplicationTests {
 
 	@Autowired
@@ -31,28 +36,33 @@ public class PivnyStvrtokApplicationTests {
 	CurrentUserDetailsService currentUserService;
 	
 	@Autowired
-	RestaurantRepository restaurantRepository;
+	UserServiceImpl userService;
 	
+	@Autowired
+	RestaurantRepository restaurantRepository;
+		
 	@Test
 	public void contextLoads() {
 	}
 	
 	@Test
 	public void createPS() {
-		currentUserService.loadUserByUsername("testAdmin");
 		PivnyStvrtok ps = new PivnyStvrtok();
 		Post post = new Post();
 		post.setEntry("DFLSDFDSLFSDLFJ a lksjfala sjflaskjdfA <fldkj aldfkj dslfjsdlf jsdlvfj asfljasdas dfas dfas fas dfas df");
-		post.setUser(currentUserService.getUser());
+		post.setUser(userService.getUserByUsername("testAdmin").get());
 		Vote vote = new Vote();
-		vote.setDate(new DateTime(2017,03,02,20,00));
+		vote.setDate(new DateTime(2017,6,8,20,00));
 		vote.setRestaurant(restaurantRepository.findByName("Zámocký pivovar"));
-		ps.setDate(new DateTime(2017,03,02,20,00));
+		vote.setUser(currentUserService.getUser());
+		ps.setDate(new DateTime(2017,6,8,20,00));
 		ps.setPosts(Arrays.asList(post,post,post));
 		ps.setVotes(Arrays.asList(vote,vote,vote));
 		ps.setRestaurant(restaurantRepository.findByName("Zámocký pivovar"));
 		ps.setState(States.VOTING);
-		psRepository.save(ps);
+		PivnyStvrtok psTested = psRepository.save(ps);
+		assertThat(psTested).isNotNull();
+
 	}
 	
 	@Test

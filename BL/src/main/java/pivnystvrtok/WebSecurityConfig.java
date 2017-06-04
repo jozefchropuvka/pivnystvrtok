@@ -56,10 +56,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
-		http.cors().and().csrf().disable().exceptionHandling().authenticationEntryPoint(restAuthenticationEntryPoint).and()
-				.authorizeRequests().antMatchers("/ps/search/currentSimple").permitAll().anyRequest().fullyAuthenticated().and().formLogin()
-				.permitAll().successHandler(authenticationSuccessHandler)
-				.failureHandler(new SimpleUrlAuthenticationFailureHandler()).and().logout().logoutSuccessHandler(new HttpStatusReturningLogoutSuccessHandler()).permitAll();
+		http.cors().and().csrf().disable().exceptionHandling().authenticationEntryPoint(restAuthenticationEntryPoint)
+				.and().authorizeRequests().antMatchers("/ps/search/currentSimple").permitAll().anyRequest()
+				.fullyAuthenticated().and().formLogin().permitAll().successHandler(authenticationSuccessHandler)
+				.failureHandler(new SimpleUrlAuthenticationFailureHandler()).and().logout()
+				.logoutSuccessHandler(new HttpStatusReturningLogoutSuccessHandler()).permitAll();
 	}
 
 	@Override

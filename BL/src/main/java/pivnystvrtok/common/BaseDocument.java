@@ -25,9 +25,11 @@ public class BaseDocument {
 	}
 	
 	@CreatedDate
+	@JsonProperty
 	private DateTime createdDate;
 	
 	@LastModifiedDate
+	@JsonProperty
 	private DateTime lastModified;
 	
 	@CreatedBy

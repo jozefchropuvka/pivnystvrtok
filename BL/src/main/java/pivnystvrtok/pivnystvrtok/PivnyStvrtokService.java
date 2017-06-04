@@ -31,22 +31,29 @@ public class PivnyStvrtokService {
 		if(ps.getState().equals(States.VOTED)){
 			throw new ValidationException(ApplicationExceptionCode.VotingIsFinished.getMessage());
 		}
-		User u = currentUserService.getUser();
-		Assert.notNull(u);
-		List<Vote> listVotes = ps.getVotes();	
-		if(listVotes.contains(u.getId())){
+		User user = currentUserService.getUser();
+		Assert.notNull(user);
+		vote.setUser(user);
+		vote.setDateVoted(new DateTime());
+		List<Vote> listVotes = ps.getVotes() == null ? new ArrayList<Vote>() : ps.getVotes();
+		if(listVotes.isEmpty()){
+			listVotes.add(vote);
+		} else {
+			boolean exists = false;
 			for (Vote v : listVotes) {
-				if(v.getUser().equals(u)){
+				if(v.getUser().getId().equals(user.getId())){
 					v.setDateVoted(new DateTime());
 					v.setDate(vote.getDate());
 					v.setRestaurant(vote.getRestaurant());
+					exists = true;
+					break;
 				}
 			}
-		} else {
-			vote.setUser(u);
-			vote.setDateVoted(new DateTime());
-			listVotes.add(vote);
+			if(!exists){
+				listVotes.add(vote);
+			}
 		}
+		ps.setVotes(listVotes);
 		repository.save(ps);
 		return vote;
 	}
@@ -57,8 +64,7 @@ public class PivnyStvrtokService {
 		Assert.notNull(ps);
 		User u = currentUserService.getUser();
 		Assert.notNull(u);
-		List<Vote> listVotes = ps.getVotes();
-		Assert.notNull(listVotes);
+		List<Vote> listVotes = ps.getVotes() == null ? new ArrayList<Vote>() : ps.getVotes();
 		for (Vote v : listVotes) {
 			if (v.equals(u.getId())) {
 				vote = v;

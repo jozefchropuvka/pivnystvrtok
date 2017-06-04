@@ -2,7 +2,7 @@ package pivnystvrtok.pivnystvrtok;
 
 import java.util.List;
 
-import javax.xml.bind.ValidationException;
+import javax.validation.ValidationException;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.rest.core.annotation.HandleBeforeCreate;
